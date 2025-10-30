@@ -1,1123 +1,997 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard 8 Agenda Prioritas Presiden</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        /* Design System CSS */
-        :root {
-            --color-white: rgba(255, 255, 255, 1);
-            --color-black: rgba(0, 0, 0, 1);
-            --color-cream-50: rgba(252, 252, 249, 1);
-            --color-cream-100: rgba(255, 255, 253, 1);
-            --color-gray-200: rgba(245, 245, 245, 1);
-            --color-gray-300: rgba(167, 169, 169, 1);
-            --color-gray-400: rgba(119, 124, 124, 1);
-            --color-slate-500: rgba(98, 108, 113, 1);
-            --color-brown-600: rgba(94, 82, 64, 1);
-            --color-charcoal-700: rgba(31, 33, 33, 1);
-            --color-charcoal-800: rgba(38, 40, 40, 1);
-            --color-slate-900: rgba(19, 52, 59, 1);
-            --color-teal-300: rgba(50, 184, 198, 1);
-            --color-teal-400: rgba(45, 166, 178, 1);
-            --color-teal-500: rgba(33, 128, 141, 1);
-            --color-teal-600: rgba(29, 116, 128, 1);
-            --color-teal-700: rgba(26, 104, 115, 1);
-            --color-brown-600-rgb: 94, 82, 64;
-            --color-teal-500-rgb: 33, 128, 141;
-            --color-slate-900-rgb: 19, 52, 59;
-            --color-slate-500-rgb: 98, 108, 113;
-            --color-bg-1: rgba(59, 130, 246, 0.08);
-            --color-bg-2: rgba(245, 158, 11, 0.08);
-            --color-bg-3: rgba(34, 197, 94, 0.08);
-            --color-bg-4: rgba(239, 68, 68, 0.08);
-            --color-bg-5: rgba(147, 51, 234, 0.08);
-            --color-bg-6: rgba(249, 115, 22, 0.08);
-            --color-bg-7: rgba(236, 72, 153, 0.08);
-            --color-bg-8: rgba(6, 182, 212, 0.08);
-            --color-background: var(--color-cream-50);
-            --color-surface: var(--color-cream-100);
-            --color-text: var(--color-slate-900);
-            --color-text-secondary: var(--color-slate-500);
-            --color-primary: var(--color-teal-500);
-            --color-primary-hover: var(--color-teal-600);
-            --color-border: rgba(var(--color-brown-600-rgb), 0.2);
-            --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
-            --font-family-base: "FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            --font-size-sm: 12px;
-            --font-size-base: 14px;
-            --font-size-lg: 16px;
-            --font-size-xl: 18px;
-            --font-size-2xl: 20px;
-            --font-size-3xl: 24px;
-            --font-size-4xl: 30px;
-            --font-weight-medium: 500;
-            --font-weight-semibold: 550;
-            --font-weight-bold: 600;
-            --space-8: 8px;
-            --space-12: 12px;
-            --space-16: 16px;
-            --space-20: 20px;
-            --space-24: 24px;
-            --space-32: 32px;
-            --radius-base: 8px;
-            --radius-lg: 12px;
-            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
-            --duration-normal: 250ms;
-            --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        [data-theme="dark"] {
-            --color-gray-400-rgb: 119, 124, 124;
-            --color-teal-300-rgb: 50, 184, 198;
-            --color-gray-300-rgb: 167, 169, 169;
-            --color-gray-200-rgb: 245, 245, 245;
-            --color-bg-1: rgba(29, 78, 216, 0.15);
-            --color-bg-2: rgba(180, 83, 9, 0.15);
-            --color-bg-3: rgba(21, 128, 61, 0.15);
-            --color-bg-4: rgba(185, 28, 28, 0.15);
-            --color-bg-5: rgba(107, 33, 168, 0.15);
-            --color-bg-6: rgba(194, 65, 12, 0.15);
-            --color-bg-7: rgba(190, 24, 93, 0.15);
-            --color-bg-8: rgba(8, 145, 178, 0.15);
-            --color-background: var(--color-charcoal-700);
-            --color-surface: var(--color-charcoal-800);
-            --color-text: var(--color-gray-200);
-            --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
-            --color-primary: var(--color-teal-300);
-            --color-primary-hover: var(--color-teal-400);
-            --color-border: rgba(var(--color-gray-400-rgb), 0.3);
-            --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: var(--font-family-base);
-            background-color: var(--color-background);
-            color: var(--color-text);
-            line-height: 1.6;
-            transition: background-color var(--duration-normal) var(--ease-standard),
-                        color var(--duration-normal) var(--ease-standard);
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: var(--space-24);
-        }
-
-        /* Header */
-        .header {
-            text-align: center;
-            margin-bottom: var(--space-32);
-            position: relative;
-        }
-
-        .header h1 {
-            font-size: var(--font-size-4xl);
-            font-weight: var(--font-weight-bold);
-            color: var(--color-text);
-            margin-bottom: var(--space-8);
-        }
-
-        .header .subtitle {
-            font-size: var(--font-size-xl);
-            color: var(--color-text-secondary);
-            margin-bottom: var(--space-8);
-        }
-
-        .header .last-updated {
-            font-size: var(--font-size-sm);
-            color: var(--color-text-secondary);
-        }
-
-        .dark-mode-toggle {
-            position: absolute;
-            top: 0;
-            right: 0;
-            padding: var(--space-8) var(--space-16);
-            background-color: var(--color-surface);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-base);
-            cursor: pointer;
-            font-size: var(--font-size-base);
-            color: var(--color-text);
-            transition: all var(--duration-normal) var(--ease-standard);
-        }
-
-        .dark-mode-toggle:hover {
-            background-color: var(--color-primary);
-            color: white;
-        }
-
-        /* KPI Cards */
-        .kpi-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: var(--space-20);
-            margin-bottom: var(--space-32);
-        }
-
-        .kpi-card {
-            background-color: var(--color-surface);
-            border: 1px solid var(--color-card-border);
-            border-radius: var(--radius-lg);
-            padding: var(--space-24);
-            box-shadow: var(--shadow-sm);
-            transition: all var(--duration-normal) var(--ease-standard);
-        }
-
-        .kpi-card:hover {
-            box-shadow: var(--shadow-md);
-            transform: translateY(-2px);
-        }
-
-        .kpi-card .icon {
-            font-size: 32px;
-            margin-bottom: var(--space-12);
-        }
-
-        .kpi-card h3 {
-            font-size: var(--font-size-base);
-            font-weight: var(--font-weight-semibold);
-            color: var(--color-text-secondary);
-            margin-bottom: var(--space-16);
-        }
-
-        .kpi-card .value {
-            font-size: var(--font-size-2xl);
-            font-weight: var(--font-weight-bold);
-            color: var(--color-text);
-            margin-bottom: var(--space-8);
-        }
-
-        .kpi-card .metric {
-            font-size: var(--font-size-sm);
-            color: var(--color-text-secondary);
-            margin-bottom: var(--space-8);
-        }
-
-        .status-badge {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: var(--font-size-sm);
-            font-weight: var(--font-weight-medium);
-            margin-top: var(--space-8);
-        }
-
-        .status-badge.green {
-            background-color: rgba(16, 185, 129, 0.15);
-            color: #10B981;
-            border: 1px solid rgba(16, 185, 129, 0.25);
-        }
-
-        /* Agenda Cards */
-        .agenda-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: var(--space-24);
-            margin-bottom: var(--space-32);
-        }
-
-        .agenda-card {
-            background-color: var(--color-surface);
-            border: 1px solid var(--color-card-border);
-            border-radius: var(--radius-lg);
-            padding: var(--space-24);
-            box-shadow: var(--shadow-sm);
-            transition: all var(--duration-normal) var(--ease-standard);
-        }
-
-        .agenda-card:hover {
-            box-shadow: var(--shadow-md);
-            transform: translateY(-2px);
-        }
-
-        .agenda-header {
-            display: flex;
-            align-items: center;
-            gap: var(--space-12);
-            margin-bottom: var(--space-16);
-        }
-
-        .agenda-header .icon {
-            font-size: 28px;
-        }
-
-        .agenda-header h3 {
-            font-size: var(--font-size-lg);
-            font-weight: var(--font-weight-semibold);
-            color: var(--color-text);
-        }
-
-        .agenda-status {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: var(--font-size-sm);
-            font-weight: var(--font-weight-medium);
-            margin-bottom: var(--space-16);
-        }
-
-        .agenda-status.excellent {
-            background-color: rgba(16, 185, 129, 0.15);
-            color: #10B981;
-            border: 1px solid rgba(16, 185, 129, 0.25);
-        }
-
-        .agenda-status.good {
-            background-color: rgba(59, 130, 246, 0.15);
-            color: #3B82F6;
-            border: 1px solid rgba(59, 130, 246, 0.25);
-        }
-
-        .agenda-status.on-track {
-            background-color: rgba(245, 158, 11, 0.15);
-            color: #F59E0B;
-            border: 1px solid rgba(245, 158, 11, 0.25);
-        }
-
-        .agenda-status.perlu-percepatan {
-            background-color: rgba(239, 68, 68, 0.15);
-            color: #EF4444;
-            border: 1px solid rgba(239, 68, 68, 0.25);
-        }
-
-        .agenda-alokasi {
-            font-size: var(--font-size-3xl);
-            font-weight: var(--font-weight-bold);
-            color: var(--color-text);
-            margin-bottom: var(--space-16);
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background-color: var(--color-border);
-            border-radius: 4px;
-            overflow: hidden;
-            margin-bottom: var(--space-8);
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--color-primary), var(--color-primary-hover));
-            border-radius: 4px;
-            transition: width 1s var(--ease-standard);
-        }
-
-        .progress-text {
-            font-size: var(--font-size-sm);
-            color: var(--color-text-secondary);
-            margin-bottom: var(--space-16);
-        }
-
-        .metrics-list {
-            list-style: none;
-            margin-bottom: var(--space-16);
-        }
-
-        .metrics-list li {
-            font-size: var(--font-size-sm);
-            color: var(--color-text-secondary);
-            margin-bottom: var(--space-8);
-            padding-left: 20px;
-            position: relative;
-        }
-
-        .metrics-list li:before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: var(--color-primary);
-            font-weight: bold;
-        }
-
-        .detail-button {
-            width: 100%;
-            padding: var(--space-8) var(--space-16);
-            background-color: var(--color-primary);
-            color: white;
-            border: none;
-            border-radius: var(--radius-base);
-            font-size: var(--font-size-base);
-            font-weight: var(--font-weight-medium);
-            cursor: pointer;
-            transition: all var(--duration-normal) var(--ease-standard);
-        }
-
-        .detail-button:hover {
-            background-color: var(--color-primary-hover);
-        }
-
-        .detail-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s var(--ease-standard);
-        }
-
-        .detail-content.expanded {
-            max-height: 500px;
-            padding-top: var(--space-16);
-        }
-
-        /* Charts Section */
-        .charts-section {
-            margin-bottom: var(--space-32);
-        }
-
-        .charts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: var(--space-24);
-        }
-
-        .chart-container {
-            background-color: var(--color-surface);
-            border: 1px solid var(--color-card-border);
-            border-radius: var(--radius-lg);
-            padding: var(--space-24);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .chart-container h3 {
-            font-size: var(--font-size-lg);
-            font-weight: var(--font-weight-semibold);
-            color: var(--color-text);
-            margin-bottom: var(--space-20);
-        }
-
-        .chart-wrapper {
-            position: relative;
-            height: 400px;
-        }
-
-        /* Executive Narrative */
-        .narrative-section {
-            margin-bottom: var(--space-32);
-        }
-
-        .narrative-toggle {
-            width: 100%;
-            padding: var(--space-16);
-            background-color: var(--color-surface);
-            border: 1px solid var(--color-card-border);
-            border-radius: var(--radius-lg);
-            font-size: var(--font-size-lg);
-            font-weight: var(--font-weight-semibold);
-            color: var(--color-text);
-            cursor: pointer;
-            text-align: left;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all var(--duration-normal) var(--ease-standard);
-        }
-
-        .narrative-toggle:hover {
-            background-color: var(--color-primary);
-            color: white;
-        }
-
-        .narrative-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s var(--ease-standard);
-        }
-
-        .narrative-content.expanded {
-            max-height: 1000px;
-        }
-
-        .narrative-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--space-24);
-            padding: var(--space-24);
-            background-color: var(--color-surface);
-            border: 1px solid var(--color-card-border);
-            border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-        }
-
-        .narrative-column h4 {
-            font-size: var(--font-size-lg);
-            font-weight: var(--font-weight-semibold);
-            color: var(--color-text);
-            margin-bottom: var(--space-16);
-        }
-
-        .narrative-column ul {
-            list-style: none;
-        }
-
-        .narrative-column li {
-            font-size: var(--font-size-sm);
-            color: var(--color-text-secondary);
-            margin-bottom: var(--space-12);
-            padding-left: 20px;
-            position: relative;
-        }
-
-        .narrative-column li:before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: var(--color-primary);
-            font-weight: bold;
-        }
-
-        /* Timeline */
-        .timeline-section {
-            margin-bottom: var(--space-32);
-        }
-
-        .timeline-section h2 {
-            font-size: var(--font-size-3xl);
-            font-weight: var(--font-weight-bold);
-            color: var(--color-text);
-            margin-bottom: var(--space-24);
-            text-align: center;
-        }
-
-        .timeline {
-            position: relative;
-            padding: var(--space-24);
-            background-color: var(--color-surface);
-            border: 1px solid var(--color-card-border);
-            border-radius: var(--radius-lg);
-        }
-
-        .timeline-item {
-            display: flex;
-            gap: var(--space-20);
-            margin-bottom: var(--space-24);
-            position: relative;
-        }
-
-        .timeline-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .timeline-marker {
-            width: 12px;
-            height: 12px;
-            background-color: var(--color-primary);
-            border-radius: 50%;
-            flex-shrink: 0;
-            margin-top: 6px;
-        }
-
-        .timeline-item.current .timeline-marker {
-            width: 16px;
-            height: 16px;
-            background-color: #10B981;
-            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
-        }
-
-        .timeline-content {
-            flex: 1;
-        }
-
-        .timeline-period {
-            font-size: var(--font-size-base);
-            font-weight: var(--font-weight-semibold);
-            color: var(--color-text);
-            margin-bottom: var(--space-8);
-        }
-
-        .timeline-event {
-            font-size: var(--font-size-sm);
-            color: var(--color-text-secondary);
-        }
-
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: var(--space-32) 0;
-            border-top: 1px solid var(--color-border);
-        }
-
-        .footer .source {
-            font-size: var(--font-size-sm);
-            font-weight: var(--font-weight-semibold);
-            color: var(--color-text);
-            margin-bottom: var(--space-8);
-        }
-
-        .footer .description {
-            font-size: var(--font-size-sm);
-            color: var(--color-text-secondary);
-        }
-
-        /* Section Titles */
-        .section-title {
-            font-size: var(--font-size-3xl);
-            font-weight: var(--font-weight-bold);
-            color: var(--color-text);
-            margin-bottom: var(--space-24);
-            text-align: center;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .kpi-grid,
-            .agenda-grid,
-            .charts-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .dark-mode-toggle {
-                position: static;
-                display: block;
-                margin: var(--space-16) auto;
-            }
-
-            .header h1 {
-                font-size: var(--font-size-3xl);
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard 8 Agenda Prioritas Presiden</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+/* Design System CSS */
+:root {
+--color-white: rgba(255, 255, 255, 1);
+--color-black: rgba(0, 0, 0, 1);
+--color-cream-50: rgba(252, 252, 249, 1);
+--color-cream-100: rgba(255, 255, 253, 1);
+--color-gray-200: rgba(245, 245, 245, 1);
+--color-gray-300: rgba(167, 169, 169, 1);
+--color-gray-400: rgba(119, 124, 124, 1);
+--color-slate-500: rgba(98, 108, 113, 1);
+--color-brown-600: rgba(94, 82, 64, 1);
+--color-charcoal-700: rgba(31, 33, 33, 1);
+--color-charcoal-800: rgba(38, 40, 40, 1);
+--color-slate-900: rgba(19, 52, 59, 1);
+--color-teal-300: rgba(50, 184, 198, 1);
+--color-teal-400: rgba(45, 166, 178, 1);
+--color-teal-500: rgba(33, 128, 141, 1);
+--color-teal-600: rgba(29, 116, 128, 1);
+--color-teal-700: rgba(26, 104, 115, 1);
+--color-brown-600-rgb: 94, 82, 64;
+--color-teal-500-rgb: 33, 128, 141;
+--color-slate-900-rgb: 19, 52, 59;
+--color-slate-500-rgb: 98, 108, 113;
+--color-bg-1: rgba(59, 130, 246, 0.08);
+--color-bg-2: rgba(245, 158, 11, 0.08);
+--color-bg-3: rgba(34, 197, 94, 0.08);
+--color-bg-4: rgba(239, 68, 68, 0.08);
+--color-bg-5: rgba(147, 51, 234, 0.08);
+--color-bg-6: rgba(249, 115, 22, 0.08);
+--color-bg-7: rgba(236, 72, 153, 0.08);
+--color-bg-8: rgba(6, 182, 212, 0.08);
+--color-background: var(--color-cream-50);
+--color-surface: var(--color-cream-100);
+--color-text: var(--color-slate-900);
+--color-text-secondary: var(--color-slate-500);
+--color-primary: var(--color-teal-500);
+--color-primary-hover: var(--color-teal-600);
+--color-border: rgba(var(--color-brown-600-rgb), 0.2);
+--color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+--font-family-base: "FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+--font-size-sm: 12px;
+--font-size-base: 14px;
+--font-size-lg: 16px;
+--font-size-xl: 18px;
+--font-size-2xl: 20px;
+--font-size-3xl: 24px;
+--font-size-4xl: 30px;
+--font-weight-medium: 500;
+--font-weight-semibold: 550;
+--font-weight-bold: 600;
+--space-8: 8px;
+--space-12: 12px;
+--space-16: 16px;
+--space-20: 20px;
+--space-24: 24px;
+--space-32: 32px;
+--radius-base: 8px;
+--radius-lg: 12px;
+--shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+--shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+--duration-normal: 250ms;
+--ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="dark"] {
+--color-gray-400-rgb: 119, 124, 124;
+--color-teal-300-rgb: 50, 184, 198;
+--color-gray-300-rgb: 167, 169, 169;
+--color-gray-200-rgb: 245, 245, 245;
+--color-bg-1: rgba(29, 78, 216, 0.15);
+--color-bg-2: rgba(180, 83, 9, 0.15);
+--color-bg-3: rgba(21, 128, 61, 0.15);
+--color-bg-4: rgba(185, 28, 28, 0.15);
+--color-bg-5: rgba(107, 33, 168, 0.15);
+--color-bg-6: rgba(194, 65, 12, 0.15);
+--color-bg-7: rgba(190, 24, 93, 0.15);
+--color-bg-8: rgba(8, 145, 178, 0.15);
+--color-background: var(--color-charcoal-700);
+--color-surface: var(--color-charcoal-800);
+--color-text: var(--color-gray-200);
+--color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
+--color-primary: var(--color-teal-300);
+--color-primary-hover: var(--color-teal-400);
+--color-border: rgba(var(--color-gray-400-rgb), 0.3);
+--color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
+}
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: var(--font-family-base);
+background-color: var(--color-background);
+color: var(--color-text);
+line-height: 1.6;
+transition: background-color var(--duration-normal) var(--ease-standard),
+color var(--duration-normal) var(--ease-standard);
+}
+
+.container {
+max-width: 1400px;
+margin: 0 auto;
+padding: var(--space-24);
+}
+
+/* Header */
+.header {
+text-align: center;
+margin-bottom: var(--space-32);
+position: relative;
+}
+
+.header h1 {
+font-size: var(--font-size-4xl);
+font-weight: var(--font-weight-bold);
+color: var(--color-text);
+margin-bottom: var(--space-8);
+}
+
+.header .subtitle {
+font-size: var(--font-size-xl);
+color: var(--color-text-secondary);
+margin-bottom: var(--space-8);
+}
+
+.header .last-updated {
+font-size: var(--font-size-sm);
+color: var(--color-text-secondary);
+}
+
+.dark-mode-toggle {
+position: absolute;
+top: 0;
+right: 0;
+padding: var(--space-8) var(--space-16);
+background-color: var(--color-surface);
+border: 1px solid var(--color-border);
+border-radius: var(--radius-base);
+cursor: pointer;
+font-size: var(--font-size-base);
+color: var(--color-text);
+transition: all var(--duration-normal) var(--ease-standard);
+}
+
+.dark-mode-toggle:hover {
+background-color: var(--color-primary);
+color: white;
+}
+
+/* KPI Cards */
+.kpi-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: var(--space-20);
+margin-bottom: var(--space-32);
+}
+
+.kpi-card {
+background-color: var(--color-surface);
+border: 1px solid var(--color-card-border);
+border-radius: var(--radius-lg);
+padding: var(--space-24);
+box-shadow: var(--shadow-sm);
+transition: all var(--duration-normal) var(--ease-standard);
+}
+
+.kpi-card:hover {
+box-shadow: var(--shadow-md);
+transform: translateY(-2px);
+}
+
+.kpi-card .icon {
+font-size: 32px;
+margin-bottom: var(--space-12);
+}
+
+.kpi-card h3 {
+font-size: var(--font-size-base);
+font-weight: var(--font-weight-semibold);
+color: var(--color-text-secondary);
+margin-bottom: var(--space-16);
+}
+
+.kpi-card .value {
+font-size: var(--font-size-2xl);
+font-weight: var(--font-weight-bold);
+color: var(--color-text);
+margin-bottom: var(--space-8);
+}
+
+.kpi-card .metric {
+font-size: var(--font-size-sm);
+color: var(--color-text-secondary);
+margin-bottom: var(--space-8);
+}
+
+.status-badge {
+display: inline-block;
+padding: 4px 12px;
+border-radius: 12px;
+font-size: var(--font-size-sm);
+font-weight: var(--font-weight-medium);
+margin-top: var(--space-8);
+}
+
+.status-badge.green {
+background-color: rgba(16, 185, 129, 0.15);
+color: #10B981;
+border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+/* Agenda Cards */
+.agenda-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+gap: var(--space-24);
+margin-bottom: var(--space-32);
+}
+
+.agenda-card {
+background-color: var(--color-surface);
+border: 1px solid var(--color-card-border);
+border-radius: var(--radius-lg);
+padding: var(--space-24);
+box-shadow: var(--shadow-sm);
+transition: all var(--duration-normal) var(--ease-standard);
+}
+
+.agenda-card:hover {
+box-shadow: var(--shadow-md);
+transform: translateY(-2px);
+}
+
+.agenda-header {
+display: flex;
+align-items: center;
+gap: var(--space-12);
+margin-bottom: var(--space-16);
+}
+
+.agenda-header .icon {
+font-size: 28px;
+}
+
+.agenda-header h3 {
+font-size: var(--font-size-lg);
+font-weight: var(--font-weight-semibold);
+color: var(--color-text);
+}
+
+.agenda-status {
+display: inline-block;
+padding: 4px 12px;
+border-radius: 12px;
+font-size: var(--font-size-sm);
+font-weight: var(--font-weight-medium);
+margin-bottom: var(--space-16);
+}
+
+.agenda-status.excellent {
+background-color: rgba(16, 185, 129, 0.15);
+color: #10B981;
+border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.agenda-status.good {
+background-color: rgba(59, 130, 246, 0.15);
+color: #3B82F6;
+border: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+.agenda-status.on-track {
+background-color: rgba(245, 158, 11, 0.15);
+color: #F59E0B;
+border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.agenda-status.perlu-percepatan {
+background-color: rgba(239, 68, 68, 0.15);
+color: #EF4444;
+border: 1px solid rgba(239, 68, 68, 0.25);
+}
+
+.agenda-alokasi {
+font-size: var(--font-size-3xl);
+font-weight: var(--font-weight-bold);
+color: var(--color-text);
+margin-bottom: var(--space-16);
+}
+
+.progress-bar {
+width: 100%;
+height: 8px;
+background-color: var(--color-border);
+border-radius: 4px;
+overflow: hidden;
+margin-bottom: var(--space-8);
+}
+
+.progress-fill {
+height: 100%;
+background: linear-gradient(90deg, var(--color-primary), var(--color-primary-hover));
+border-radius: 4px;
+transition: width 1s var(--ease-standard);
+}
+
+.progress-text {
+font-size: var(--font-size-sm);
+color: var(--color-text-secondary);
+margin-bottom: var(--space-16);
+}
+
+.metrics-list {
+list-style: none;
+margin-bottom: var(--space-16);
+}
+
+.metrics-list li {
+font-size: var(--font-size-sm);
+color: var(--color-text-secondary);
+margin-bottom: var(--space-8);
+padding-left: 20px;
+position: relative;
+}
+
+.metrics-list li:before {
+content: "•";
+position: absolute;
+left: 0;
+color: var(--color-primary);
+font-weight: bold;
+}
+
+.detail-button {
+width: 100%;
+padding: var(--space-8) var(--space-16);
+background-color: var(--color-primary);
+color: white;
+border: none;
+border-radius: var(--radius-base);
+font-size: var(--font-size-base);
+font-weight: var(--font-weight-medium);
+cursor: pointer;
+transition: all var(--duration-normal) var(--ease-standard);
+}
+
+.detail-button:hover {
+background-color: var(--color-primary-hover);
+}
+
+.detail-content {
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.3s var(--ease-standard);
+}
+
+.detail-content.expanded {
+max-height: 500px;
+padding-top: var(--space-16);
+}
+
+/* Charts Section */
+.charts-section {
+margin-bottom: var(--space-32);
+}
+
+.charts-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+gap: var(--space-24);
+}
+
+.chart-container {
+background-color: var(--color-surface);
+border: 1px solid var(--color-card-border);
+border-radius: var(--radius-lg);
+padding: var(--space-24);
+box-shadow: var(--shadow-sm);
+}
+
+.chart-container h3 {
+font-size: var(--font-size-lg);
+font-weight: var(--font-weight-semibold);
+color: var(--color-text);
+margin-bottom: var(--space-20);
+}
+
+.chart-wrapper {
+position: relative;
+height: 400px;
+}
+
+/* Executive Narrative */
+.narrative-section {
+margin-bottom: var(--space-32);
+}
+
+.narrative-toggle {
+width: 100%;
+padding: var(--space-16);
+background-color: var(--color-surface);
+border: 1px solid var(--color-card-border);
+border-radius: var(--radius-lg);
+font-size: var(--font-size-lg);
+font-weight: var(--font-weight-semibold);
+color: var(--color-text);
+cursor: pointer;
+text-align: left;
+display: flex;
+justify-content: space-between;
+align-items: center;
+transition: all var(--duration-normal) var(--ease-standard);
+}
+
+.narrative-toggle:hover {
+background-color: var(--color-primary);
+color: white;
+}
+
+.narrative-content {
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.3s var(--ease-standard);
+}
+
+.narrative-content.expanded {
+max-height: 1000px;
+}
+
+.narrative-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: var(--space-24);
+padding: var(--space-24);
+background-color: var(--color-surface);
+border: 1px solid var(--color-card-border);
+border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+.narrative-column h4 {
+font-size: var(--font-size-lg);
+font-weight: var(--font-weight-semibold);
+color: var(--color-text);
+margin-bottom: var(--space-16);
+}
+
+.narrative-column ul {
+list-style: none;
+}
+
+.narrative-column li {
+font-size: var(--font-size-sm);
+color: var(--color-text-secondary);
+margin-bottom: var(--space-12);
+padding-left: 20px;
+position: relative;
+}
+
+.narrative-column li:before {
+content: "→";
+position: absolute;
+left: 0;
+color: var(--color-primary);
+font-weight: bold;
+}
+
+/* Timeline */
+.timeline-section {
+margin-bottom: var(--space-32);
+}
+
+.timeline-section h2 {
+font-size: var(--font-size-3xl);
+font-weight: var(--font-weight-bold);
+color: var(--color-text);
+margin-bottom: var(--space-24);
+text-align: center;
+}
+
+.timeline {
+position: relative;
+padding: var(--space-24);
+background-color: var(--color-surface);
+border: 1px solid var(--color-card-border);
+border-radius: var(--radius-lg);
+}
+
+.timeline-item {
+display: flex;
+gap: var(--space-20);
+margin-bottom: var(--space-24);
+position: relative;
+}
+
+.timeline-item:last-child {
+margin-bottom: 0;
+}
+
+.timeline-marker {
+width: 12px;
+height: 12px;
+background-color: var(--color-primary);
+border-radius: 50%;
+flex-shrink: 0;
+margin-top: 6px;
+}
+
+.timeline-item.current .timeline-marker {
+width: 16px;
+height: 16px;
+background-color: #10B981;
+box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+}
+
+.timeline-content {
+flex: 1;
+}
+
+.timeline-period {
+font-size: var(--font-size-base);
+font-weight: var(--font-weight-semibold);
+color: var(--color-text);
+margin-bottom: var(--space-8);
+}
+
+.timeline-event {
+font-size: var(--font-size-sm);
+color: var(--color-text-secondary);
+}
+
+/* Footer */
+.footer {
+text-align: center;
+padding: var(--space-32) 0;
+border-top: 1px solid var(--color-border);
+}
+
+.footer .source {
+font-size: var(--font-size-sm);
+font-weight: var(--font-weight-semibold);
+color: var(--color-text);
+margin-bottom: var(--space-8);
+}
+
+.footer .description {
+font-size: var(--font-size-sm);
+color: var(--color-text-secondary);
+}
+
+/* Section Titles */
+.section-title {
+font-size: var(--font-size-3xl);
+font-weight: var(--font-weight-bold);
+color: var(--color-text);
+margin-bottom: var(--space-24);
+text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+.kpi-grid,
+.agenda-grid,
+.charts-grid {
+grid-template-columns: 1fr;
+}
+
+.dark-mode-toggle {
+position: static;
+display: block;
+margin: var(--space-16) auto;
+}
+
+.header h1 {
+font-size: var(--font-size-3xl);
+}
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <button class="dark-mode-toggle" onclick="toggleDarkMode()">
-                <span id="theme-icon">🌙</span> Mode Gelap
-            </button>
-            <h1>Dashboard 8 Agenda Prioritas Presiden</h1>
-            <div class="subtitle">Monitoring Fiskal dan Capaian Nasional</div>
-            <div class="last-updated">Terakhir diperbarui: 30 Oktober 2025, 13:00 WIB</div>
-        </div>
+<div class="container">
+<!-- Header -->
+<div class="header">
+<button class="dark-mode-toggle" onclick="toggleDarkMode()">
+<span id="theme-icon">🌙</span> Mode Gelap
+</button>
+<h1>Dashboard 8 Agenda Prioritas Presiden</h1>
+<div class="subtitle">Monitoring Fiskal dan Capaian Nasional</div>
+<div class="last-updated">Terakhir diperbarui: 30 Oktober 2025, 13:00 WIB</div>
+</div>
 
-        <script>
-    // Data
-    const agendaData = [
-        {
-            id: 1,
-            nama: "Ketahanan Pangan",
-            icon: "🌾",
-            alokasi: "Rp164,4 T",
-            progress: 56.0,
-            status: "On Track",
-            statusClass: "on-track",
-            metrics: [
-                "Produksi beras: target ≥34 jt ton",
-                "Subsidi pupuk: 9,62 jt ton (≥90% tepat sasaran)",
-                "Cetak sawah baru: target ha/ thn (per kab/kota)",
-                "Stok Bulog: target >4 jt ton"
-            ]
-        },
-        {
-            id: 2,
-            nama: "Ketahanan Energi",
-            icon: "⚡",
-            alokasi: "Rp402,4 T",
-            progress: 48.0,
-            status: "Perlu Percepatan",
-            statusClass: "perlu-percepatan",
-            metrics: [
-                "Lifting migas: target minyak & gas",
-                "Bauran EBT: akselerasi menuju 19–23% (2030)",
-                "Elektrifikasi desa: target 100%",
-                "Subsidi BBM/LPG/listrik: tepat sasaran (KTP tertarget)"
-            ]
-        },
-        {
-            id: 3,
-            nama: "Program Makan Bergizi Gratis (MBG)",
-            icon: "🍱",
-            alokasi: "Rp335 T",
-            progress: 29.0,
-            status: "Perlu Percepatan",
-            statusClass: "perlu-percepatan",
-            metrics: [
-                "Cakupan: 82,9 jt penerima",
-                "SPPG operasional: target 30.000",
-                "Biaya per porsi: Rp7.500–15.000",
-                "Outcome: penurunan stunting & peningkatan gizi"
-            ]
-        },
-        {
-            id: 4,
-            nama: "Pendidikan Bermutu",
-            icon: "🎓",
-            alokasi: "Rp757,8 T",
-            progress: 38.0,
-            status: "On Track",
-            statusClass: "on-track",
-            metrics: [
-                "PIP/KIP: 21,1 jt siswa + 1,2 jt mhs",
-                "Beasiswa LPDP: target 4.000",
-                "Revitalisasi sekolah/madrasah: progres",
-                "Digitalisasi: akses & platform pembelajaran"
-            ]
-        },
-        {
-            id: 5,
-            nama: "Kesehatan Berkualitas",
-            icon: "🏥",
-            alokasi: "Rp244 T",
-            progress: 50.0,
-            status: "On Track",
-            statusClass: "on-track",
-            metrics: [
-                "PBI JKN: 96,8 jt jiwa",
-                "Fasyankes primer: 9 nakes standar (≥65%)",
-                "RSUD rujukan: 4 spesialis dasar + 3 lain (≥80%)",
-                "Fokus: AKI/AKB, penyakit menular, layanan gratis"
-            ]
-        },
-        {
-            id: 6,
-            nama: "Pembangunan Desa & Koperasi Merah Putih",
-            icon: "🏪",
-            alokasi: "Dana Desa + KUR/UMi",
-            progress: 60.0,
-            status: "Good",
-            statusClass: "good",
-            metrics: [
-                "Koperasi: 80.081 diresmikan",
-                "Akses permodalan: KUR/Ultramikro",
-                "Omzet KDKMP & anggota aktif",
-                "Pembiayaan investasi APBN: Rp203,1 T (dukungan)"
-            ]
-        },
-        {
-            id: 7,
-            nama: "Pertahanan Rakyat Semesta",
-            icon: "🛡️",
-            alokasi: "Rp185 T",
-            progress: 44.0,
-            status: "Perlu Selektivitas",
-            statusClass: "perlu-percepatan",
-            metrics: [
-                "Modernisasi alutsista: Rp81,39 T",
-                "Komponen cadangan: peningkatan personel",
-                "Kesiapan operasi: latihan & pemeliharaan",
-                "Industri pertahanan: TKDN & kontrak strategis"
-            ]
-        },
-        {
-            id: 8,
-            nama: "Percepatan Investasi & Perdagangan Global",
-            icon: "🌏",
-            alokasi: "Rp203,1 T (pembiayaan) + insentif",
-            progress: 52.0,
-            status: "On Track",
-            statusClass: "on-track",
-            metrics: [
-                "Target investasi: Rp2.175,26 T",
-                "PMA/PMDN: top sektor & asal negara",
-                "Lapangan kerja: >1,25 jt/tahun",
-                "Danantara & OSS: proyek strategis"
-            ]
-        }
-    ];
-</script>
-
-
-        <!-- Agenda Cards -->
+<!-- Agenda Cards -->
+        <!-- <div class="agenda-grid" id="agendaGrid"></div> -->
         <div class="agenda-grid" id="agendaGrid"></div>
 
-        <!-- Executive Narrative -->
-        <div class="narrative-section">
-            <button class="narrative-toggle" onclick="toggleNarrative()">
-                <span>📋 Narasi Eksekutif untuk Menteri</span>
-                <span id="narrative-arrow">▼</span>
-            </button>
-            <div class="narrative-content" id="narrativeContent">
-                <div class="narrative-grid">
-                    <div class="narrative-column">
-                        <h4>Capaian Utama ✅</h4>
-                        <ul>
-                            <li>Fiskal sehat: Defisit 1,56% PDB</li>
-                            <li>KUR gemilang: Rp220 T, NPL 2,28%</li>
-                            <li>Infrastruktur air: 10 bendungan &gt;60%</li>
-                            <li>RB: Indeks 71,55 (Baik)</li>
-                            <li>Kesehatan: CKG 29,8 jt + JKN 96,8 jt</li>
-                        </ul>
-                    </div>
-                    <div class="narrative-column">
-                        <h4>Tantangan Kritis ⚠️</h4>
-                        <ul>
-                            <li>Pajak: Terkontraksi 4,4%</li>
-                            <li>MBG: Serapan baru 29%</li>
-                            <li>EBT: Stagnan di 14,68%</li>
-                            <li>K/L: Rp474,7 T belum terserap</li>
-                            <li>PNBP: Terkontraksi 24,9%</li>
-                        </ul>
-                    </div>
-                    <div class="narrative-column">
-                        <h4>Rekomendasi Strategis 🎯</h4>
-                        <ul>
-                            <li>Intensifikasi pajak multidoor</li>
-                            <li>Akselerasi MBG via SPPG</li>
-                            <li>Percepatan EBT: Satgas Hilirisasi</li>
-                            <li>Enforcement evaluasi K/L</li>
-                            <li>Digitalisasi: SPBE→Pemdi</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!-- Executive Narrative -->
+<div class="narrative-section">
+<button class="narrative-toggle" onclick="toggleNarrative()">
+<span>📋 Narasi Eksekutif untuk Menteri</span>
+<span id="narrative-arrow">▼</span>
+</button>
+<div class="narrative-content" id="narrativeContent">
+<div class="narrative-grid">
+<div class="narrative-column">
+<h4>Capaian Utama ✅</h4>
+<ul>
+<li>Fiskal sehat: Defisit 1,56% PDB</li>
+<li>KUR gemilang: Rp220 T, NPL 2,28%</li>
+<li>Infrastruktur air: 10 bendungan &gt;60%</li>
+<li>RB: Indeks 71,55 (Baik)</li>
+<li>Kesehatan: CKG 29,8 jt + JKN 96,8 jt</li>
+</ul>
+</div>
+<div class="narrative-column">
+<h4>Tantangan Kritis ⚠️</h4>
+<ul>
+<li>Pajak: Terkontraksi 4,4%</li>
+<li>MBG: Serapan baru 29%</li>
+<li>EBT: Stagnan di 14,68%</li>
+<li>K/L: Rp474,7 T belum terserap</li>
+<li>PNBP: Terkontraksi 24,9%</li>
+</ul>
+</div>
+<div class="narrative-column">
+<h4>Rekomendasi Strategis 🎯</h4>
+<ul>
+<li>Intensifikasi pajak multidoor</li>
+<li>Akselerasi MBG via SPPG</li>
+<li>Percepatan EBT: Satgas Hilirisasi</li>
+<li>Enforcement evaluasi K/L</li>
+<li>Digitalisasi: SPBE→Pemdi</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 
-        <!-- Footer -->
-        <div class="footer">
-            <div class="source">Sumber Data: Nota Keuangan RAPBN 2026 - Kementerian Keuangan RI</div>
-            <div class="description">Dashboard ini menyediakan monitoring real-time 8 Agenda Prioritas untuk pengambilan keputusan strategis tingkat Menteri</div>
-        </div>
-    </div>
+<!-- Footer -->
+<div class="footer">
+<div class="source">Sumber Data: Nota Keuangan RAPBN 2026 - Kementerian Keuangan RI</div>
+<div class="description">Dashboard ini menyediakan monitoring real-time 8 Agenda Prioritas untuk pengambilan keputusan strategis tingkat Menteri</div>
+</div>
+</div>
 
-    <script>
-        // Data
-        const agendaData = [
-            {
-                id: 1,
-                nama: "Ketahanan Pangan",
-                icon: "🌾",
-                alokasi: "Rp164,4 T",
-                progress: 56.45,
-                status: "On Track",
-                statusClass: "on-track",
-                metrics: [
-                    "Subsidi pupuk: 5,6 juta ton",
-                    "Cetak sawah 2026: 250 ribu ha",
-                    "Alsintan: 36.958 unit",
-                    "OIP Bulog: Rp22,7 T"
-                ]
-            },
-            {
-                id: 2,
-                nama: "Ketahanan Energi",
-                icon: "⚡",
-                alokasi: "Rp402,4 T",
-                progress: 14.68,
-                status: "Perlu Percepatan",
-                statusClass: "perlu-percepatan",
-                metrics: [
-                    "Bauran EBT 2024: 14,68%",
-                    "Target EBT 2030: 19-23%",
-                    "Rasio elektrifikasi: 99,79%",
-                    "Kapasitas EBT: 14,8 GW"
-                ]
-            },
-            {
-                id: 3,
-                nama: "Ketahanan Air & Lingkungan",
-                icon: "💧",
-                alokasi: "Rp47,8 T",
-                progress: 66.67,
-                status: "Excellent",
-                statusClass: "excellent",
-                metrics: [
-                    "15 bendungan (10 progres >60%)",
-                    "Way Apu: 94,59% selesai",
-                    "Ekspansi irigasi: 263.055 ha",
-                    "Indeks Pertanaman: 262%"
-                ]
-            },
-            {
-                id: 4,
-                nama: "Ketahanan Kesehatan",
-                icon: "🏥",
-                alokasi: "Rp243,9 T",
-                progress: 49.67,
-                status: "On Track",
-                statusClass: "on-track",
-                metrics: [
-                    "CKG: 29,8 juta (target 60 jt)",
-                    "CKG 2026: 130,3 juta",
-                    "PBI JKN: 96,8 juta jiwa",
-                    "Stunting: 19,8% → 17,5%"
-                ]
-            },
-            {
-                id: 5,
-                nama: "Pendidikan & SDM",
-                icon: "🎓",
-                alokasi: "Rp757,8 T",
-                progress: 37.6,
-                status: "On Track",
-                statusClass: "on-track",
-                metrics: [
-                    "MBG 2026: 82,9 juta (Rp335 T)",
-                    "KIP Kuliah: 1,2 juta mhs",
-                    "Sekolah Rakyat: 42,5 ribu",
-                    "Revitalisasi: Rp22,5 T"
-                ]
-            },
-            {
-                id: 6,
-                nama: "Transformasi Digital",
-                icon: "💻",
-                alokasi: "Terintegrasi",
-                progress: 71.55,
-                status: "Good",
-                statusClass: "good",
-                metrics: [
-                    "Indeks RB: 71,55 (Baik)",
-                    "Indeks K/L: 82,98",
-                    "Transisi SPBE → Pemdi",
-                    "5 Aspek TDP aktif"
-                ]
-            },
-            {
-                id: 7,
-                nama: "Penguatan UMKM",
-                icon: "🏪",
-                alokasi: "Rp300 T (KUR)",
-                progress: 73.3,
-                status: "Excellent",
-                statusClass: "excellent",
-                metrics: [
-                    "KUR: Rp220 T tersalurkan",
-                    "Debitur: 3,75 juta",
-                    "NPL: 2,28%",
-                    "Tenaga kerja: 11 juta"
-                ]
-            },
-            {
-                id: 8,
-                nama: "Reformasi Birokrasi",
-                icon: "📊",
-                alokasi: "Rp3.786,5 T",
-                progress: 63.4,
-                status: "Excellent",
-                statusClass: "excellent",
-                metrics: [
-                    "Defisit: 1,56% PDB",
-                    "Keseimbangan: +Rp18 T",
-                    "Target 2026: 2,48%",
-                    "Utang: 39-40% PDB"
-                ]
-            }
-        ];
+<script>
+// Data
+const agendaData = [
+{
+id: 1,
+nama: "Ketahanan Pangan",
+icon: "🌾",
+alokasi: "Rp164,4 T",
+progress: 56.45,
+status: "On Track",
+statusClass: "on-track",
+metrics: [
+"Subsidi pupuk: 5,6 juta ton",
+"Cetak sawah 2026: 250 ribu ha",
+"Alsintan: 36.958 unit",
+"OIP Bulog: Rp22,7 T"
+]
+},
+{
+id: 2,
+nama: "Ketahanan Energi",
+icon: "⚡",
+alokasi: "Rp402,4 T",
+progress: 14.68,
+status: "Perlu Percepatan",
+statusClass: "perlu-percepatan",
+metrics: [
+"Bauran EBT 2024: 14,68%",
+"Target EBT 2030: 19-23%",
+"Rasio elektrifikasi: 99,79%",
+"Kapasitas EBT: 14,8 GW"
+]
+},
+{
+id: 3,
+nama: "Ketahanan Air & Lingkungan",
+icon: "💧",
+alokasi: "Rp47,8 T",
+progress: 66.67,
+status: "Excellent",
+statusClass: "excellent",
+metrics: [
+"15 bendungan (10 progres >60%)",
+"Way Apu: 94,59% selesai",
+"Ekspansi irigasi: 263.055 ha",
+"Indeks Pertanaman: 262%"
+]
+},
+{
+id: 4,
+nama: "Ketahanan Kesehatan",
+icon: "🏥",
+alokasi: "Rp243,9 T",
+progress: 49.67,
+status: "On Track",
+statusClass: "on-track",
+metrics: [
+"CKG: 29,8 juta (target 60 jt)",
+"CKG 2026: 130,3 juta",
+"PBI JKN: 96,8 juta jiwa",
+"Stunting: 19,8% → 17,5%"
+]
+},
+{
+id: 5,
+nama: "Pendidikan & SDM",
+icon: "🎓",
+alokasi: "Rp757,8 T",
+progress: 37.6,
+status: "On Track",
+statusClass: "on-track",
+metrics: [
+"MBG 2026: 82,9 juta (Rp335 T)",
+"KIP Kuliah: 1,2 juta mhs",
+"Sekolah Rakyat: 42,5 ribu",
+"Revitalisasi: Rp22,5 T"
+]
+},
+{
+id: 6,
+nama: "Transformasi Digital",
+icon: "💻",
+alokasi: "Terintegrasi",
+progress: 71.55,
+status: "Good",
+statusClass: "good",
+metrics: [
+"Indeks RB: 71,55 (Baik)",
+"Indeks K/L: 82,98",
+"Transisi SPBE → Pemdi",
+"5 Aspek TDP aktif"
+]
+},
+{
+id: 7,
+nama: "Penguatan UMKM",
+icon: "🏪",
+alokasi: "Rp300 T (KUR)",
+progress: 73.3,
+status: "Excellent",
+statusClass: "excellent",
+metrics: [
+"KUR: Rp220 T tersalurkan",
+"Debitur: 3,75 juta",
+"NPL: 2,28%",
+"Tenaga kerja: 11 juta"
+]
+},
+{
+id: 8,
+nama: "Reformasi Birokrasi",
+icon: "📊",
+alokasi: "Rp3.786,5 T",
+progress: 63.4,
+status: "Excellent",
+statusClass: "excellent",
+metrics: [
+"Defisit: 1,56% PDB",
+"Keseimbangan: +Rp18 T",
+"Target 2026: 2,48%",
+"Utang: 39-40% PDB"
+]
+}
+];
 
-        // Render Agenda Cards
-        function renderAgendaCards() {
-            const grid = document.getElementById('agendaGrid');
-            grid.innerHTML = agendaData.map(agenda => `
-                <div class="agenda-card">
-                    <div class="agenda-header">
-                        <span class="icon">${agenda.icon}</span>
-                        <h3>${agenda.nama}</h3>
-                    </div>
-                    <span class="agenda-status ${agenda.statusClass}">${agenda.status}</span>
-                    <div class="agenda-alokasi">${agenda.alokasi}</div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: ${agenda.progress}%"></div>
-                    </div>
-                    <div class="progress-text">Realisasi 2025: ${agenda.progress}%</div>
-                    <ul class="metrics-list">
-                        ${agenda.metrics.map(metric => `<li>${metric}</li>`).join('')}
-                    </ul>
-                    <button class="detail-button" onclick="toggleDetail(${agenda.id})">
-                        Lihat Detail
-                    </button>
-                    <div class="detail-content" id="detail-${agenda.id}">
-                        <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary); margin-top: var(--space-16);">
-                            Detail lengkap program dan metrik akan ditampilkan di sini untuk monitoring yang lebih mendalam.
-                        </p>
-                    </div>
-                </div>
-            `).join('');
-        }
+// Render Agenda Cards
+function renderAgendaCards() {
+const grid = document.getElementById('agendaGrid');
+grid.innerHTML = agendaData.map(agenda => `
+               <div class="agenda-card">
+                   <div class="agenda-header">
+                       <span class="icon">${agenda.icon}</span>
+                       <h3>${agenda.nama}</h3>
+                   </div>
+                   <span class="agenda-status ${agenda.statusClass}">${agenda.status}</span>
+                   <div class="agenda-alokasi">${agenda.alokasi}</div>
+                   <div class="progress-bar">
+                       <div class="progress-fill" style="width: ${agenda.progress}%"></div>
+                   </div>
+                   <div class="progress-text">Realisasi 2025: ${agenda.progress}%</div>
+                   <ul class="metrics-list">
+                       ${agenda.metrics.map(metric => `<li>${metric}</li>`).join('')}
+                   </ul>
+                   <button class="detail-button" onclick="toggleDetail(${agenda.id})">
+                       Lihat Detail
+                   </button>
+                   <div class="detail-content" id="detail-${agenda.id}">
+                       <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary); margin-top: var(--space-16);">
+                           Detail lengkap program dan metrik akan ditampilkan di sini untuk monitoring yang lebih mendalam.
+                       </p>
+                   </div>
+               </div>
+           `).join('');
+}
 
-        // Toggle Detail
-        function toggleDetail(id) {
-            const detailElement = document.getElementById(`detail-${id}`);
-            detailElement.classList.toggle('expanded');
-        }
+// Toggle Detail
+function toggleDetail(id) {
+const detailElement = document.getElementById(`detail-${id}`);
+detailElement.classList.toggle('expanded');
+}
 
-        // Dark Mode Toggle
-        let isDarkMode = false;
-        function toggleDarkMode() {
-            isDarkMode = !isDarkMode;
-            document.body.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
-            document.getElementById('theme-icon').textContent = isDarkMode ? '☀️' : '🌙';
-            
-            // Update charts when theme changes
-            updateCharts();
-        }
+// Dark Mode Toggle
+let isDarkMode = false;
+function toggleDarkMode() {
+isDarkMode = !isDarkMode;
+document.body.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+document.getElementById('theme-icon').textContent = isDarkMode ? '☀️' : '🌙';
 
-        // Toggle Narrative
-        function toggleNarrative() {
-            const content = document.getElementById('narrativeContent');
-            const arrow = document.getElementById('narrative-arrow');
-            content.classList.toggle('expanded');
-            arrow.textContent = content.classList.contains('expanded') ? '▲' : '▼';
-        }
+// Update charts when theme changes
+updateCharts();
+}
 
-        // Chart colors
-        function getChartColors() {
-            const isDark = document.body.getAttribute('data-theme') === 'dark';
-            return {
-                text: isDark ? '#f5f5f5' : '#13343b',
-                grid: isDark ? 'rgba(119, 124, 124, 0.3)' : 'rgba(94, 82, 64, 0.2)',
-                colors: ['#1FB8CD', '#FFC185', '#B4413C', '#ECEBD5', '#5D878F', '#DB4545']
-            };
-        }
+// Toggle Narrative
+function toggleNarrative() {
+const content = document.getElementById('narrativeContent');
+const arrow = document.getElementById('narrative-arrow');
+content.classList.toggle('expanded');
+arrow.textContent = content.classList.contains('expanded') ? '▲' : '▼';
+}
 
-        // Create Charts
-        let fiscalChartInstance = null;
-        let indicatorChartInstance = null;
+// Chart colors
+function getChartColors() {
+const isDark = document.body.getAttribute('data-theme') === 'dark';
+return {
+text: isDark ? '#f5f5f5' : '#13343b',
+grid: isDark ? 'rgba(119, 124, 124, 0.3)' : 'rgba(94, 82, 64, 0.2)',
+colors: ['#1FB8CD', '#FFC185', '#B4413C', '#ECEBD5', '#5D878F', '#DB4545']
+};
+}
 
-        function createFiscalChart() {
-            const ctx = document.getElementById('fiscalChart').getContext('2d');
-            const colors = getChartColors();
-            
-            if (fiscalChartInstance) {
-                fiscalChartInstance.destroy();
-            }
-            
-            fiscalChartInstance = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['Pendapatan Negara', 'Belanja Negara', 'Defisit'],
-                    datasets: [
-                        {
-                            label: '2025 Outlook',
-                            data: [2865.5, 3527.5, 662.0],
-                            backgroundColor: colors.colors[0]
-                        },
-                        {
-                            label: '2026 RAPBN',
-                            data: [3147.7, 3786.5, 638.8],
-                            backgroundColor: colors.colors[1]
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            labels: {
-                                color: colors.text
-                            }
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return context.dataset.label + ': Rp' + context.parsed.y.toFixed(1) + ' T';
-                                }
-                            }
-                        }
-                    },
-                    scales: {
-                        x: {
-                            ticks: {
-                                color: colors.text
-                            },
-                            grid: {
-                                color: colors.grid
-                            }
-                        },
-                        y: {
-                            ticks: {
-                                color: colors.text,
-                                callback: function(value) {
-                                    return 'Rp' + value + ' T';
-                                }
-                            },
-                            grid: {
-                                color: colors.grid
-                            }
-                        }
-                    }
-                }
-            });
-        }
+// Create Charts
+let fiscalChartInstance = null;
+let indicatorChartInstance = null;
 
-        function createIndicatorChart() {
-            const ctx = document.getElementById('indicatorChart').getContext('2d');
-            const colors = getChartColors();
-            
-            if (indicatorChartInstance) {
-                indicatorChartInstance.destroy();
-            }
-            
-            indicatorChartInstance = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: [
-                        'Pertumbuhan Ekonomi',
-                        'Tingkat Kemiskinan',
-                        'Kemiskinan Ekstrem',
-                        'Pengangguran',
-                        'Rasio Gini',
-                        'Indeks Modal Manusia',
-                        'Stunting',
-                        'Usia Harapan Hidup',
-                        'Inflasi'
-                    ],
-                    datasets: [
-                        {
-                            label: 'Outlook 2025',
-                            data: [5.15, 8.47, 0.85, 4.76, 0.375, 0.56, 19.8, 71.57, 2.37],
-                            backgroundColor: colors.colors[0]
-                        },
-                        {
-                            label: 'Target 2026',
-                            data: [5.4, 7.0, 0.0, 4.7, 0.378, 0.57, 17.5, 74.68, 2.5],
-                            backgroundColor: colors.colors[1]
-                        }
-                    ]
-                },
-                options: {
-                    indexAxis: 'y',
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            labels: {
-                                color: colors.text
-                            }
-                        }
-                    },
-                    scales: {
-                        x: {
-                            ticks: {
-                                color: colors.text
-                            },
-                            grid: {
-                                color: colors.grid
-                            }
-                        },
-                        y: {
-                            ticks: {
-                                color: colors.text
-                            },
-                            grid: {
-                                color: colors.grid
-                            }
-                        }
-                    }
-                }
-            });
-        }
+function createFiscalChart() {
+const ctx = document.getElementById('fiscalChart').getContext('2d');
+const colors = getChartColors();
 
-        function updateCharts() {
-            createFiscalChart();
-            createIndicatorChart();
-        }
+if (fiscalChartInstance) {
+fiscalChartInstance.destroy();
+}
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            renderAgendaCards();
-            createFiscalChart();
-            createIndicatorChart();
-        });
-    </script>
+fiscalChartInstance = new Chart(ctx, {
+type: 'bar',
+data: {
+labels: ['Pendapatan Negara', 'Belanja Negara', 'Defisit'],
+datasets: [
+{
+label: '2025 Outlook',
+data: [2865.5, 3527.5, 662.0],
+backgroundColor: colors.colors[0]
+},
+{
+label: '2026 RAPBN',
+data: [3147.7, 3786.5, 638.8],
+backgroundColor: colors.colors[1]
+}
+]
+},
+options: {
+responsive: true,
+maintainAspectRatio: false,
+plugins: {
+legend: {
+labels: {
+color: colors.text
+}
+},
+tooltip: {
+callbacks: {
+label: function(context) {
+return context.dataset.label + ': Rp' + context.parsed.y.toFixed(1) + ' T';
+}
+}
+}
+},
+scales: {
+x: {
+ticks: {
+color: colors.text
+},
+grid: {
+color: colors.grid
+}
+},
+y: {
+ticks: {
+color: colors.text,
+callback: function(value) {
+return 'Rp' + value + ' T';
+}
+},
+grid: {
+color: colors.grid
+}
+}
+}
+}
+});
+}
+
+function createIndicatorChart() {
+const ctx = document.getElementById('indicatorChart').getContext('2d');
+const colors = getChartColors();
+
+if (indicatorChartInstance) {
+indicatorChartInstance.destroy();
+}
+
+indicatorChartInstance = new Chart(ctx, {
+type: 'bar',
+data: {
+labels: [
+'Pertumbuhan Ekonomi',
+'Tingkat Kemiskinan',
+'Kemiskinan Ekstrem',
+'Pengangguran',
+'Rasio Gini',
+'Indeks Modal Manusia',
+'Stunting',
+'Usia Harapan Hidup',
+'Inflasi'
+],
+datasets: [
+{
+label: 'Outlook 2025',
+data: [5.15, 8.47, 0.85, 4.76, 0.375, 0.56, 19.8, 71.57, 2.37],
+backgroundColor: colors.colors[0]
+},
+{
+label: 'Target 2026',
+data: [5.4, 7.0, 0.0, 4.7, 0.378, 0.57, 17.5, 74.68, 2.5],
+backgroundColor: colors.colors[1]
+}
+]
+},
+options: {
+indexAxis: 'y',
+responsive: true,
+maintainAspectRatio: false,
+plugins: {
+legend: {
+labels: {
+color: colors.text
+}
+}
+},
+scales: {
+x: {
+ticks: {
+color: colors.text
+},
+grid: {
+color: colors.grid
+}
+},
+y: {
+ticks: {
+color: colors.text
+},
+grid: {
+color: colors.grid
+}
+}
+}
+}
+});
+}
+
+function updateCharts() {
+createFiscalChart();
+createIndicatorChart();
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+renderAgendaCards();
+createFiscalChart();
+createIndicatorChart();
+});
+</script>
 </body>
 </html>
