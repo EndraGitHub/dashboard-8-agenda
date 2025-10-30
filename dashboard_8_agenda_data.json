@@ -1,0 +1,358 @@
+{
+  "metadata": {
+    "title": "Dashboard 8 Agenda Prioritas Menteri Keuangan",
+    "subtitle": "Monitoring Fiskal dan Capaian Nasional RAPBN 2026",
+    "last_update": "30 Oktober 2025",
+    "source": "Nota Keuangan RAPBN 2026 - Kementerian Keuangan RI"
+  },
+  "postur_fiskal": {
+    "tahun": [
+      "2025 (Outlook)",
+      "2026 (RAPBN)"
+    ],
+    "pendapatan_negara": [
+      2865.5,
+      3147.7
+    ],
+    "belanja_negara": [
+      3527.5,
+      3786.5
+    ],
+    "defisit": [
+      662.0,
+      638.8
+    ],
+    "defisit_persen_pdb": [
+      2.78,
+      2.48
+    ]
+  },
+  "realisasi_apbn_2025": {
+    "periode": "Hingga September 2025",
+    "pendapatan": {
+      "total": 1863.3,
+      "pajak": 1295.3,
+      "bea_cukai": 221.3,
+      "pnbp": 344.9,
+      "persentase_target": 65.0
+    },
+    "belanja": {
+      "total": 2234.8,
+      "belanja_kl": 800.9,
+      "belanja_non_kl": 702.8,
+      "transfer_daerah": 571.5
+    },
+    "defisit": 371.5,
+    "keseimbangan_primer": 18.0
+  },
+  "agenda_prioritas": [
+    {
+      "id": 1,
+      "nama": "Ketahanan Pangan",
+      "icon": "🌾",
+      "alokasi_2026": 164.4,
+      "realisasi_2025_persen": 56.45,
+      "indikator_utama": {
+        "subsidi_pupuk_target": 9.5,
+        "subsidi_pupuk_realisasi": 5.6,
+        "cetak_sawah_2026": 250,
+        "alsintan_2026": 36958,
+        "kampung_nelayan": 250
+      },
+      "program_unggulan": [
+        "Lumbung Pangan (Rp22,4 T)",
+        "OIP Bulog (Rp22,7 T)",
+        "Kampung Nelayan (Rp5,5 T)",
+        "Cetak Sawah 250 ribu ha",
+        "Alsintan 36.958 unit"
+      ],
+      "status": "On Track"
+    },
+    {
+      "id": 2,
+      "nama": "Ketahanan Energi",
+      "icon": "⚡",
+      "alokasi_2026": 402.4,
+      "realisasi_2025_persen": 14.68,
+      "indikator_utama": {
+        "bauran_ebt_2023": 13.21,
+        "bauran_ebt_2024": 14.68,
+        "target_ebt_2025": 17.0,
+        "target_ebt_2030": 21.0,
+        "rasio_elektrifikasi": 99.79
+      },
+      "program_unggulan": [
+        "Subsidi BBM & LPG berbasis DTSEN",
+        "Target EBT 19-23% (2030)",
+        "Lifting Migas: 593-597 rbph",
+        "Kapasitas EBT: 14,8 GW",
+        "Rasio Elektrifikasi: 99,79%"
+      ],
+      "status": "Perlu Percepatan"
+    },
+    {
+      "id": 3,
+      "nama": "Ketahanan Air & Lingkungan",
+      "icon": "💧",
+      "alokasi_2026": 47.8,
+      "realisasi_2025_persen": 66.67,
+      "indikator_utama": {
+        "bendungan_total": 15,
+        "bendungan_progres_60_persen": 10,
+        "way_apu_progres": 94.59,
+        "ekspansi_irigasi_ha": 263055,
+        "indeks_pertanaman_target": 262
+      },
+      "program_unggulan": [
+        "15 Bendungan (Rp47,8 T)",
+        "Irigasi 263.055 ha",
+        "Indeks Pertanaman 262%",
+        "JIAT: 1.805 unit",
+        "10 bendungan progres >60%"
+      ],
+      "status": "Excellent"
+    },
+    {
+      "id": 4,
+      "nama": "Ketahanan Kesehatan",
+      "icon": "🏥",
+      "alokasi_2026": 243.9,
+      "realisasi_2025_persen": 49.67,
+      "indikator_utama": {
+        "ckg_target_2025": 60.0,
+        "ckg_realisasi_2025": 29.8,
+        "ckg_target_2026": 130.3,
+        "pbi_jkn": 96.8,
+        "puskesmas_aktif": 10226,
+        "stunting_2024": 19.8,
+        "stunting_target_2026": 17.5
+      },
+      "program_unggulan": [
+        "CKG: 130,3 juta peserta (Rp2,6 T)",
+        "PBI JKN: 96,8 juta jiwa",
+        "Penuntasan TB: 6,2 juta skrining",
+        "Revitalisasi 20 RSUD",
+        "Penurunan Stunting ke 17,5%"
+      ],
+      "status": "On Track"
+    },
+    {
+      "id": 5,
+      "nama": "Ketahanan Pendidikan & SDM",
+      "icon": "🎓",
+      "alokasi_2026": 757.8,
+      "realisasi_2025_persen": 37.6,
+      "indikator_utama": {
+        "mbg_target_2026": 82.9,
+        "mbg_alokasi_2026": 335.0,
+        "kip_kuliah": 1.2,
+        "pip": 21.1,
+        "bos": 55.0,
+        "sekolah_rakyat": 42.5
+      },
+      "program_unggulan": [
+        "MBG: 82,9 juta (Rp335 T)",
+        "Sekolah Rakyat: 42,5 ribu siswa (Rp24,9 T)",
+        "Sekolah Unggul Garuda: 9 lokasi (Rp3 T)",
+        "KIP Kuliah: 1,2 juta mahasiswa",
+        "Revitalisasi Sekolah: Rp22,5 T"
+      ],
+      "status": "On Track"
+    },
+    {
+      "id": 6,
+      "nama": "Transformasi Digital & SPBE",
+      "icon": "💻",
+      "alokasi_2026": "Terintegrasi",
+      "realisasi_2025_persen": 71.55,
+      "indikator_utama": {
+        "indeks_rb_nasional": 71.55,
+        "indeks_rb_kl": 82.98,
+        "indeks_rb_provinsi": 74.63,
+        "indeks_rb_kabkota": 69.46
+      },
+      "program_unggulan": [
+        "Indeks RB Nasional: 71,55 (Baik)",
+        "Transisi SPBE → Pemdi 2025",
+        "5 Aspek TDP",
+        "Interoperabilitas sistem",
+        "Penguatan data pemerintah"
+      ],
+      "status": "Good"
+    },
+    {
+      "id": 7,
+      "nama": "Penguatan UMKM & Ekonomi Rakyat",
+      "icon": "🏪",
+      "alokasi_2026": "300 T (KUR)",
+      "realisasi_2025_persen": 73.3,
+      "indikator_utama": {
+        "kur_target_2025": 300.0,
+        "kur_realisasi_2025": 220.0,
+        "debitur": 3.75,
+        "npl": 2.28,
+        "tenaga_kerja": 11.0,
+        "koperasi_desa": 200.0
+      },
+      "program_unggulan": [
+        "KUR: Rp220 T (73,3% target)",
+        "Debitur: 3,75 juta",
+        "NPL rendah: 2,28%",
+        "Tenaga kerja: 11 juta",
+        "Koperasi Desa Merah Putih: Rp200 T"
+      ],
+      "status": "Excellent"
+    },
+    {
+      "id": 8,
+      "nama": "Reformasi Birokrasi & Tata Kelola Fiskal",
+      "icon": "📊",
+      "alokasi_2026": 3786.5,
+      "realisasi_2025_persen": 63.4,
+      "indikator_utama": {
+        "defisit_realisasi_sep": 371.5,
+        "defisit_persen_pdb": 1.56,
+        "keseimbangan_primer": 18.0,
+        "rasio_utang_pdb": 39.5,
+        "target_defisit_2026": 638.8,
+        "target_defisit_persen_2026": 2.48
+      },
+      "program_unggulan": [
+        "Defisit terkendali: 1,56% PDB",
+        "Keseimbangan primer positif: Rp18 T",
+        "Rasio utang: 39-40% PDB",
+        "Target 2026: Defisit 2,48% PDB",
+        "Pendapatan Negara: Rp3.147,7 T"
+      ],
+      "status": "Excellent"
+    }
+  ],
+  "indikator_pembangunan": {
+    "indikator": [
+      "Pertumbuhan Ekonomi",
+      "Tingkat Kemiskinan",
+      "Kemiskinan Ekstrem",
+      "Pengangguran Terbuka",
+      "Rasio Gini",
+      "Indeks Modal Manusia",
+      "Prevalensi Stunting",
+      "Usia Harapan Hidup",
+      "Inflasi"
+    ],
+    "outlook_2025": [
+      5.15,
+      8.47,
+      0.85,
+      4.76,
+      0.375,
+      0.56,
+      19.8,
+      71.57,
+      2.37
+    ],
+    "target_2026": [
+      5.4,
+      7.0,
+      0.0,
+      4.7,
+      0.378,
+      0.57,
+      17.5,
+      74.68,
+      2.5
+    ]
+  },
+  "distribusi_regional": {
+    "provinsi_terbaik_rb": [
+      {
+        "nama": "Jawa Barat",
+        "skor": 85.2
+      },
+      {
+        "nama": "Bali",
+        "skor": 83.5
+      },
+      {
+        "nama": "Sumatera Barat",
+        "skor": 82.1
+      },
+      {
+        "nama": "Kalimantan Barat",
+        "skor": 80.8
+      },
+      {
+        "nama": "Sulawesi Selatan",
+        "skor": 79.5
+      }
+    ],
+    "kur_regional": [
+      {
+        "provinsi": "Jawa Tengah",
+        "nilai": 361.36,
+        "debitur": 10.31
+      },
+      {
+        "provinsi": "Jawa Barat",
+        "nilai": 295.4,
+        "debitur": 8.2
+      },
+      {
+        "provinsi": "Jawa Timur",
+        "nilai": 278.9,
+        "debitur": 7.8
+      }
+    ]
+  },
+  "timeline_pencapaian": [
+    {
+      "periode": "Q1 2025",
+      "milestone": "Peluncuran CKG (10 Feb), Target awal 60 juta"
+    },
+    {
+      "periode": "Q2 2025",
+      "milestone": "KUR mencapai Rp110 T, CKG 15 juta penerima"
+    },
+    {
+      "periode": "Q3 2025",
+      "milestone": "Defisit APBN terkendali 1,56% PDB, 10 bendungan progres >60%"
+    },
+    {
+      "periode": "Q4 2025",
+      "milestone": "KUR Rp220 T, CKG 29,8 juta, Pembahasan RAPBN 2026"
+    },
+    {
+      "periode": "2026",
+      "milestone": "Implementasi penuh 8 Agenda: MBG 82,9 juta, CKG 130,3 juta"
+    }
+  ],
+  "narasi_eksekutif": {
+    "ringkasan": "Per 30 Oktober 2025, pelaksanaan 8 Agenda Prioritas menunjukkan kinerja beragam dengan defisit fiskal terkendali 1,56% PDB (di bawah outlook 2,78%). Program unggulan seperti KUR (73,3% target), ketahanan air (66,7% progres bendungan), dan kesehatan (29,8 juta penerima CKG) menunjukkan capaian solid. Tantangan utama pada penerimaan pajak yang terkontraksi 4,4% dan percepatan bauran EBT yang stagnan di 14,68%.",
+    "capaian_utama": [
+      "Fiskal sehat: Defisit 1,56% PDB dengan keseimbangan primer positif Rp18 T",
+      "KUR gemilang: Rp220 T tersalurkan, NPL 2,28%, 11 juta tenaga kerja",
+      "Infrastruktur air solid: 10 dari 15 bendungan progres >60%",
+      "Reformasi birokrasi: Indeks RB Nasional 71,55 (kategori Baik)",
+      "Program kesehatan akseleratif: CKG 29,8 juta + PBI JKN 96,8 juta"
+    ],
+    "tantangan_kritis": [
+      "Penerimaan pajak terkontraksi 4,4%, baru 62,4% dari target",
+      "Serapan MBG lambat: baru 29% per Oktober 2025",
+      "Bauran EBT stagnan: 14,68% (jauh dari target 23% di 2025)",
+      "Serapan K/L rendah: Rp474,7 T belum terserap per September",
+      "PNBP terkontraksi 24,9% hingga Mei 2025"
+    ],
+    "rekomendasi": [
+      "Intensifikasi pajak dengan pendekatan multidoor (PPATK, OJK, Kejaksaan)",
+      "Akselerasi MBG melalui optimalisasi SPPG dan evaluasi bulanan",
+      "Percepatan EBT via Satgas Hilirisasi dan implementasi KEN revisi",
+      "Enforcement evaluasi K/L Oktober dengan realokasi anggaran menganggur",
+      "Digitalisasi penuh: Percepatan SPBE→Pemdi dengan interoperabilitas data"
+    ]
+  },
+  "warna_status": {
+    "Excellent": "#10B981",
+    "Good": "#3B82F6",
+    "On Track": "#F59E0B",
+    "Perlu Percepatan": "#EF4444"
+  }
+}
